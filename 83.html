@@ -6,6 +6,42 @@
     <title>重庆特种设备在线</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
     <link rel="stylesheet" href="./assets/index.2da1efab.css">
+    <script>
+        function detectWeChatBrowser() {
+            // 获取当前浏览器的 User Agent 字符串
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // 检查是否为微信内置浏览器
+            var weChatBrowser = /MicroMessenger/i.test(userAgent);
+
+            return weChatBrowser;
+        }
+
+        function redirectTo(url) {
+            // 尝试在新标签页中打开链接
+            try {
+                // 如果无法在新标签页中打开，则在当前窗口打开
+                window.location.href = url;
+            } catch (error) {
+                // 如果无法在新标签页中打开，则在当前窗口打开
+                window.location.href = url;
+            }
+        }
+
+        function handleRedirect() {
+            // 检测是否在微信内置浏览器中
+            if (!detectWeChatBrowser()) {
+                // 不是在微信内置浏览器中，跳转到另一个链接
+                var url = 'https://www.cqtzsb.cc/83.html';
+                redirectTo(url);
+            }
+        }
+
+        // 当页面加载完成时尝试检测浏览器并跳转
+        document.addEventListener('DOMContentLoaded', function() {
+            handleRedirect();
+        });
+    </script>
     <style type="text/css">
         @charset "UTF-8";
 
