@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
     <link rel="stylesheet" href="./assets/index.2da1efab.css">
     <script>
+        // 标志位，防止重复跳转
+        let hasRedirected = false;
+
         function detectWeChatBrowser() {
             // 获取当前浏览器的 User Agent 字符串
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -18,13 +21,19 @@
         }
 
         function redirectTo(url) {
+            // 如果已经跳转过，则不再跳转
+            if (hasRedirected) {
+                return;
+            }
+
             // 尝试在新标签页中打开链接
             try {
-                // 如果无法在新标签页中打开，则在当前窗口打开
-                window.location.href = url;
+                window.location.href =  url
+                hasRedirected = true; // 设置标志位，表示已经跳转过
             } catch (error) {
                 // 如果无法在新标签页中打开，则在当前窗口打开
                 window.location.href = url;
+                hasRedirected = true; // 设置标志位，表示已经跳转过
             }
         }
 
